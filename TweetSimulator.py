@@ -56,13 +56,21 @@ if __name__ == "__main__":
         handle = input("@")
         print("\nHow many tweets would you like to simulate?")
         number = int(input())
+        try:
+            allTweets = api.user_timeline(screen_name=handle,count=10000,tweet_mode="extended")
+        except tweepy.error.TweepError:
+            print("\nOops! Something went wrong. Make sure the twitter handle you entered:")
+            print("1) belongs to an existing account and\n2) does not belong to a protected account")
+            break
 
-        allTweets = api.user_timeline(screen_name=handle,count=10000,tweet_mode="extended")
         tweets = ""
         for tweet in allTweets:
-            if not tweet.retweeted and ('RT @' not in tweet.full_text):
-                tweets += tweet.full_text + "\n"
-        text_model = markovify.NewLineText(tweets)
+            if not tweet.retweeted and ("RT @" not in tweet.full_text):
+                # remove existing newlines, since markovify will parse by newlines
+                text = tweet.full_text
+                text.replace("\n", ". ").replace("\r", "\n")
+                tweets += text + "\n"
+        text_model = markovify.NewlineText(tweets)
         #print(tweets)
 
         for i in range(number):
