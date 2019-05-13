@@ -100,5 +100,5 @@ ENV/
 # mypy
 .mypy_cache/
 
-#extras
-secrets.py
+# extras
+shhh.py
