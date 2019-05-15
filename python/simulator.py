@@ -19,12 +19,12 @@ Partially based on Molly White's twitter bot framework:
   The above copyright notice and this permission notice shall be included in
   all copies or substantial portions of the Software.
 
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  THE SOFTWARE IS PROVIDED "AS IS" without WARRANTY OF ANY KIND, EXPRESS OR
   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  OUT OF OR IN CONNECTION with THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 
 TODO: create own library to implement n-gram learning model
@@ -40,9 +40,6 @@ Current issues:
 import tweepy
 import markovify
 from shhh import C_KEY, C_SECRET, A_TOKEN, A_TOKEN_SECRET
-
-# use Amber Is A Nerd Bot because that's the only bot twitter account I've set
-# up so far
 
 class TweetSimulator:
   """
