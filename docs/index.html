@@ -10,31 +10,43 @@
     <link rel="stylesheet" href="css/style.css">
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src="js/script.js"></script>
   </head>
   <body>
 
-    <!-- Header -->
-    <div class="container-fluid">
-      <div class="row text-center">
-        <div class="col-12">
-          <h1 class="display-2">Tweet Simulator</h1>
+    <div class="wrapper text-center">
+
+      <!-- Header -->
+      <div class="container-fluid">
+        <div class="row text-center align-items-center">
+          <div class="col-3 text-left">
+            <i class="fab fa-twitter" id="twitter-logo"></i>
+          </div>
+          <div class="col-9 text-right">
+            <h1 class="display-4">Tweet Simulator</h1>
+          </div>
         </div>
+      </div>
+
+      <!-- Jumptron -->
+      <div class="jumbotron text-center">
+        <!-- Instructions -->
         <div class="col-12">
           <p>Enter the Twitter handle of the user you'd like to simulate.</p>
         </div>
-      </div>
-    </div>
 
-    <!-- Input -->
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">@</span>
+        <!-- Input -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic">@</span>
+          </div>
+          <input type="text" class="form-control" id="handle_input" placeholder="twitter_handle" aria-label="twitter_handle" aria-describedby="basic-addon1">
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary btn-lg">Simulate</button>
+        </div>
       </div>
-      <input type="text" class="form-control" placeholder="twitter_handle" aria-label="twitter_handle" aria-describedby="basic-addon1">
-    </div>
-    <div class="text-center">
-      <button type="button" class="btn btn-primary btn-lg">Simulate</button>
     </div>
 
     <!-- Footer -->
