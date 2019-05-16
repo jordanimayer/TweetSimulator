@@ -100,5 +100,8 @@ ENV/
 # mypy
 .mypy_cache/
 
+# dumb mac things
+.DS_Store
+
 # extras
 shhh.py
