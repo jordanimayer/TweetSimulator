@@ -39,6 +39,8 @@ Current issues:
 
 import tweepy
 import markovify
+from flask import Flask, render_template, request, redirect, Response
+import random, json
 from shhh import C_KEY, C_SECRET, A_TOKEN, A_TOKEN_SECRET
 
 class TweetSimulator:
@@ -57,7 +59,7 @@ class TweetSimulator:
     self.auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)
     self.api = tweepy.API(self.auth)
 
-  def simulate(self, handle, num_tweets=3):
+  def simulate(self, handle, num_tweets=1):
     """
     Simulate a given number of tweets from a given user.
 
@@ -72,15 +74,15 @@ class TweetSimulator:
       sim.simulate('BarackObama')
     """
 
+    print('\n\nSimulating tweet for @' + handle + '\n\n')
+
     # retrieve 10,000 most recent tweets from user
     try:
       train_tweets = self.api.user_timeline(screen_name=handle,
                                             count=10000,
                                             tweet_mode='extended')
     except tweepy.error.TweepError:
-      print('\nOops! Something went wrong. Make sure the twitter handle you ' +
-            'entered belongs to an existing public account')
-      return -1
+      return ('Oops! Something went wrong. Make sure the twitter handle you ' + 'entered belongs to an existing public account')
 
     # combine all tweets into a single string of training text
     train_text = ""
@@ -100,12 +102,42 @@ class TweetSimulator:
 
     text_model = markovify.NewlineText(train_text)  # train!
 
-    # use model to make new tweets
-    for i in range(num_tweets):
-      print('')
-      print(text_model.make_short_sentence(140))
+    # use model to make new tweet
+    #sim_tweets = []
+    #for i in range(num_tweets):
+      #print('')
+      #print(text_model.make_short_sentence(140))
+    return text_model.make_short_sentence(140)
 
-    return 0
+
+handle = ""
+
+app = Flask(__name__)
+
+@app.route('/')
+def output():
+    # serve index.html
+    return render_template('index.html')
+
+@app.route('/@<handle>')
+def get_tweet(handle):
+    sim = TweetSimulator()
+    sim_tweet = sim.simulate(handle, 1)
+    return render_template('tweet.html', tweet=sim_tweet)
+
+# @app.route('/posthandle', methods = ['POST'])
+# def get_handle():
+#     handle = request.form['js_handle']
+#     return handle
+#
+# @app.route('/gettweet')
+# def make_tweet():
+#     #print('here')
+#     sim = TweetSimulator()
+#     sim_tweet = sim.simulate(handle, 1)
+#     print('\n\n' + sim_tweet + '\n\n')
+#     return json.dumps(sim_tweet)
+
 
 if __name__ == '__main__':
   """
@@ -113,18 +145,20 @@ if __name__ == '__main__':
   some tweets!
   """
 
-  sim = TweetSimulator()
+  # sim = TweetSimulator()
+  #
+  # while True:
+  #   print('\nEnter the twitter handle of the account you wish to simulate')
+  #   handle = input('@')
+  #   print('\nHow many tweets would you like to generate?')
+  #   num_tweets = int(input())
+  #
+  #   status = sim.simulate(handle, num_tweets)
+  #
+  #   if status == 0:
+  #     print('\nWould you like to do that again? (y/n)')
+  #     ans = input()
+  #     if ans == 'n':
+  #       break
 
-  while True:
-    print('\nEnter the twitter handle of the account you wish to simulate')
-    handle = input('@')
-    print('\nHow many tweets would you like to generate?')
-    num_tweets = int(input())
-
-    status = sim.simulate(handle, num_tweets)
-
-    if status == 0:
-      print('\nWould you like to do that again? (y/n)')
-      ans = input()
-      if ans == 'n':
-        break
+  app.run()
