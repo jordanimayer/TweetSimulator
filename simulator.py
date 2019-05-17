@@ -119,24 +119,12 @@ def output():
     # serve index.html
     return render_template('index.html')
 
+# not ideal, but it's the only way that's worked so far
 @app.route('/@<handle>')
 def get_tweet(handle):
     sim = TweetSimulator()
     sim_tweet = sim.simulate(handle, 1)
     return render_template('tweet.html', tweet=sim_tweet)
-
-# @app.route('/posthandle', methods = ['POST'])
-# def get_handle():
-#     handle = request.form['js_handle']
-#     return handle
-#
-# @app.route('/gettweet')
-# def make_tweet():
-#     #print('here')
-#     sim = TweetSimulator()
-#     sim_tweet = sim.simulate(handle, 1)
-#     print('\n\n' + sim_tweet + '\n\n')
-#     return json.dumps(sim_tweet)
 
 
 if __name__ == '__main__':

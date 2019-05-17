@@ -1,0 +1,156 @@
+.twitter-widget {
+  display: block;
+  max-width: 100%;
+  width: 500px;
+  min-width: 220px;
+  margin: 10px auto;
+}
+
+.sandbox-root {
+  display: block;
+  font: normal normal 16px/1.4 Helvetica, Roboto, "Segoe UI", Calibri, sans-serif;
+  color: #14171A;
+}
+
+.tweet-container {
+  overflow: hidden;
+  background-color: #FFF;
+  border: 1px solid #E1E8ED;
+  border-radius: 5px;
+  max-width: 520px;
+}
+
+.tweet {
+  padding: 20px 20px 10px 20px;
+}
+
+blockquote, p {
+  margin: 0;
+  padding: 0;
+}
+
+.tweet-header {
+  display: flex;
+}
+
+.tweet-author-avatar {
+  flex: none;
+  height: 36px;
+  background-color: transparent;
+  margin-right: 9px;
+}
+
+img {
+  border: 0;
+}
+
+.avatar {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.tweet-author {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tweet-author-link {
+  display: flex;
+  align-items: flex-start;
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: inherit;
+}
+
+.tweet-author-link:hover {
+  color: #3B94D9;
+}
+
+.tweet-author-names-container {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.tweet-author-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.tweet-author-screenname {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 1;
+  color: #697882;
+}
+
+.tweet-brand {
+  margin-left: auto;
+}
+
+.tweet-body {
+  margin-top: 13px;
+}
+
+.tweet-text {
+  text-align: left;
+  direction: ltr;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.tweet-info {
+  display: flex;
+  margin-top: 3.2px;
+  font-size: 14px;
+}
+
+.tweet-info-heart {
+  color: #697882;
+}
+
+.tweet-info-heart-stat {
+  margin-left: 3px;
+}
+
+.tweet-info-time {
+  margin-left: 12px;
+  color: #697882;
+  flex: 1;
+}
+
+.icon {
+  display: inline-block;
+  height: 1.25em;
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: text-bottom;
+}
+
+.icon-twitter {
+  font-size: 1.25em;
+  color: #38A1F3;
+}
+
+.icon-heart {
+  width: 1.25em;
+  background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23697882%22%20d%3D%22M12%2021.638h-.014C9.403%2021.59%201.95%2014.856%201.95%208.478c0-3.064%202.525-5.754%205.403-5.754%202.29%200%203.83%201.58%204.646%202.73.813-1.148%202.353-2.73%204.644-2.73%202.88%200%205.404%202.69%205.404%205.755%200%206.375-7.454%2013.11-10.037%2013.156H12zM7.354%204.225c-2.08%200-3.903%201.988-3.903%204.255%200%205.74%207.035%2011.596%208.55%2011.658%201.52-.062%208.55-5.917%208.55-11.658%200-2.267-1.822-4.255-3.902-4.255-2.528%200-3.94%202.936-3.952%202.965-.23.562-1.156.562-1.387%200-.015-.03-1.426-2.965-3.955-2.965z%22%2F%3E%3C%2Fsvg%3E);
+}
+
+.icon-info {
+  height: 18px;
+  width: 18px;
+  background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" viewBox%3D"0 0 72 72"%3E%3Cg transform%3D"translate(8 8)"%3E%3Cpath fill%3D"%23657786" fill-opacity%3D".8" d%3D"M28 3.11C14.278 3.11 3.11 14.276 3.11 28c0 13.723 11.166 24.887 24.89 24.887S52.89 41.723 52.89 28C52.89 14.274 41.724 3.11 28 3.11z"%2F%3E%3Cpath fill%3D"%23FFF" d%3D"M28 44.593c-1.718 0-3.11-1.393-3.11-3.112V30.076c0-1.718 1.392-3.11 3.11-3.11s3.11 1.392 3.11 3.11V41.48c0 1.72-1.392 3.113-3.11 3.113z"%2F%3E%3Ccircle fill%3D"%23FFF" cx%3D"28" cy%3D"18.148" r%3D"4.667"%2F%3E%3Cpath fill%3D"%23FFF" d%3D"M28 56C12.56 56 0 43.44 0 28S12.56 0 28 0s28 12.56 28 28-12.56 28-28 28zm0-49.778C15.99 6.222 6.222 15.992 6.222 28S15.992 49.778 28 49.778c12.01 0 21.778-9.77 21.778-21.778S40.008 6.222 28 6.222z"%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E)
+}
