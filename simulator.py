@@ -59,6 +59,9 @@ class TweetSimulator:
     self.auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)
     self.api = tweepy.API(self.auth)
 
+  def get_api(self):
+    return self.api
+
   def simulate(self, handle, num_tweets=1):
     """
     Simulate a given number of tweets from a given user.
@@ -109,6 +112,7 @@ class TweetSimulator:
       #print(text_model.make_short_sentence(140))
     return text_model.make_short_sentence(140)
 
+### APP SETUP ###
 
 handle = ""
 
@@ -123,8 +127,15 @@ def output():
 @app.route('/@<handle>')
 def get_tweet(handle):
     sim = TweetSimulator()
+    user = sim.get_api().get_user(handle)
+    display_name = user.name
+    avatar_url = user.profile_image_url_https
     sim_tweet = sim.simulate(handle, 1)
-    return render_template('tweet.html', tweet=sim_tweet)
+    return render_template('tweet.html',
+                            name=display_name,
+                            handle=handle,
+                            avatar_url=avatar_url,
+                            tweet=sim_tweet)
 
 
 if __name__ == '__main__':

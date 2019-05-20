@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Tweet Simulator</title>
 
+    <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/tweet.css">
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   </head>
@@ -16,17 +17,18 @@
           <div class="tweet">
             <blockquote>
               <div class="tweet-header">
-                <a class="tweet-author-avatar" href="https://twitter.com/SpaceX" aria-label="SpaceX (screen name: SpaceX)">
-                  <img class="avatar" src="/static/img/twitter-icon-square-color.png">
+                <a class="tweet-author-avatar" href="https://twitter.com/{{ handle }}" aria-label="{{ name }} (screen name: {{ handle }})">
+                  <img class="avatar" src="{{ avatar_url }}" alt="avatar">
+                  <!--<img class="avatar" src="https://pbs.twimg.com/profile_images/997868794264498176/yFGIhORf_normal.jpg" alt="avatar">-->
                 </a>
                 <div class="tweet-author">
-                  <a class="tweet-author-link" href="https://twitter.com/SpaceX" aria-label="SpaceX (screen name: SpaceX)">
+                  <a class="tweet-author-link" href="https://twitter.com/{{ handle }}" aria-label="{{ name }} (screen name: {{ handle }})">
                     <div class="tweet-author-names-container">
-                      <span class="tweet-author-name" title="SpaceX">
-                        SpaceX
+                      <span class="tweet-author-name" title="{{ name }}">
+                        {{ name }}
                       </span>
-                      <span class="tweet-author-screenname" title="@SpaceX" dir="ltr">
-                        @SpaceX
+                      <span class="tweet-author-screenname" title="@{{ handle }}" dir="ltr">
+                        @{{ handle }}
                       </span>
                     </div>
                   </a>
