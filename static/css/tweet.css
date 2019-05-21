@@ -154,3 +154,14 @@ a {
   width: 18px;
   background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" viewBox%3D"0 0 72 72"%3E%3Cg transform%3D"translate(8 8)"%3E%3Cpath fill%3D"%23657786" fill-opacity%3D".8" d%3D"M28 3.11C14.278 3.11 3.11 14.276 3.11 28c0 13.723 11.166 24.887 24.89 24.887S52.89 41.723 52.89 28C52.89 14.274 41.724 3.11 28 3.11z"%2F%3E%3Cpath fill%3D"%23FFF" d%3D"M28 44.593c-1.718 0-3.11-1.393-3.11-3.112V30.076c0-1.718 1.392-3.11 3.11-3.11s3.11 1.392 3.11 3.11V41.48c0 1.72-1.392 3.113-3.11 3.113z"%2F%3E%3Ccircle fill%3D"%23FFF" cx%3D"28" cy%3D"18.148" r%3D"4.667"%2F%3E%3Cpath fill%3D"%23FFF" d%3D"M28 56C12.56 56 0 43.44 0 28S12.56 0 28 0s28 12.56 28 28-12.56 28-28 28zm0-49.778C15.99 6.222 6.222 15.992 6.222 28S15.992 49.778 28 49.778c12.01 0 21.778-9.77 21.778-21.778S40.008 6.222 28 6.222z"%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E)
 }
+
+#home-button {
+  background-color: #FFF;
+  border-color: #38A1F3;
+  color: #38A1F3;
+}
+
+#home-button:hover {
+  border-color: #0E8FF1;
+  color: #0E8FF1;
+}

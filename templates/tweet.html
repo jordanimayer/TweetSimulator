@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <title>Tweet Simulator</title>
 
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/css/tweet.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/tweet.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   </head>
   <body>
-    <!--<p>{{ tweet }}</p>-->
-
     <div class="twitter-widget">
       <div class="sandbox-root">
         <div class="tweet-container">
@@ -46,7 +47,11 @@
                     </div>
                   </div>
                   <div class="tweet-info-time">
-                    <time datetime="2019-05-17T00:26:38+0000" title="Time posted: May 17, 2019 00:26:38 (UTC)">8:26 PM - May 16, 2019</time>
+                    <p id="current-datetime"></p>
+                    <script>
+                      var current_dt = new Date();
+                      document.getElementById("current-datetime").innerHTML = current_dt.toUTCString();
+                    </script>
                   </div>
                   <div>
                     <span class="icon icon-info"></span>
@@ -59,8 +64,16 @@
       </div>
     </div>
 
-
-
-    <!-- <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Standing down to update satellite software and triple-check everything again. Always want to do everything we can on the ground to maximize mission success, next launch opportunity in about a week.</p>&mdash; SpaceX (@SpaceX) <a href="https://twitter.com/SpaceX/status/1129181397262843906?ref_src=twsrc%5Etfw">May 17, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+    <div class="container-fluid" style="width: 500px">
+      <div class="row align-items-center">
+        <div class="col-4 text-center" id="another-button-div">
+          <button type="button" class="btn btn-primary btn-lg" id="another-button">Another!</button>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4 text-center" id="home-button-div">
+          <button type="button" class="btn btn-lg" id="home-button">Home</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
