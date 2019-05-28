@@ -12,68 +12,84 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script src="../static/js/script.js"></script>
+    <script src="../static/js/tweet.js"></script>
   </head>
   <body>
-    <div class="twitter-widget">
-      <div class="sandbox-root">
-        <div class="tweet-container">
-          <div class="tweet">
-            <blockquote>
-              <div class="tweet-header">
-                <a class="tweet-author-avatar" href="https://twitter.com/{{ handle }}" aria-label="{{ name }} (screen name: {{ handle }})">
-                  <img class="avatar" src="{{ avatar_url }}" alt="avatar">
-                  <!--<img class="avatar" src="https://pbs.twimg.com/profile_images/997868794264498176/yFGIhORf_normal.jpg" alt="avatar">-->
-                </a>
-                <div class="tweet-author">
-                  <a class="tweet-author-link" href="https://twitter.com/{{ handle }}" aria-label="{{ name }} (screen name: {{ handle }})">
-                    <div class="tweet-author-names-container">
-                      <span class="tweet-author-name" title="{{ name }}">
-                        {{ name }}
-                      </span>
-                      <span class="tweet-author-screenname" title="@{{ handle }}" dir="ltr">
-                        @{{ handle }}
-                      </span>
-                    </div>
+    <div class="content">
+      <div class="twitter-widget">
+        <div class="sandbox-root">
+          <div class="tweet-container">
+            <div class="tweet">
+              <blockquote>
+                <div class="tweet-header">
+                  <a class="tweet-author-avatar" href="https://twitter.com/{{ handle }}" aria-label="{{ name }} (screen name: {{ handle }})">
+                    <img class="avatar" src="{{ avatar_url }}" alt="avatar">
+                    <!--<img class="avatar" src="https://pbs.twimg.com/profile_images/997868794264498176/yFGIhORf_normal.jpg" alt="avatar">-->
                   </a>
+                  <div class="tweet-author">
+                    <a class="tweet-author-link" href="https://twitter.com/{{ handle }}" aria-label="{{ name }} (screen name: {{ handle }})">
+                      <div class="tweet-author-names-container">
+                        <span class="tweet-author-name" title="{{ name }}">
+                          {{ name }}
+                        </span>
+                        <span class="tweet-author-screenname" title="@{{ handle }}" dir="ltr">
+                          @{{ handle }}
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="tweet-brand">
+                    <i class="fab fa-twitter icon icon-twitter"></i>
+                  </div>
                 </div>
-                <div class="tweet-brand">
-                  <i class="fab fa-twitter icon icon-twitter"></i>
-                </div>
-              </div>
-              <div class="tweet-body">
-                <p class="tweet-text">{{ tweet }}</p>
-                <div class="tweet-info">
-                  <div>
-                    <div class="tweet-info-heart">
-                      <div class="icon icon-heart"></div><span class="tweet-info-heart-stat">69K</span>
+                <div class="tweet-body">
+                  <p class="tweet-text">{{ tweet }}</p>
+                  <div class="tweet-info">
+                    <div>
+                      <div class="tweet-info-heart">
+                        <div class="icon icon-heart"></div><span class="tweet-info-heart-stat">69K</span>
+                      </div>
+                    </div>
+                    <div class="tweet-info-time">
+                      <p id="current-datetime"></p>
+                      <!-- Use current date, time -->
+                      <script src="../static/js/datetime.js"></script>
+                    </div>
+                    <div>
+                      <span class="icon icon-info"></span>
                     </div>
                   </div>
-                  <div class="tweet-info-time">
-                    <p id="current-datetime"></p>
-                    <!-- Use current date, time -->
-                    <script src="../static/js/datetime.js"></script>
-                  </div>
-                  <div>
-                    <span class="icon icon-info"></span>
-                  </div>
                 </div>
-              </div>
-            </blockquote>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" style="width: 500px">
+        <div class="row align-items-center">
+          <div class="col-4 text-center" id="another-button-div">
+            <button type="button" class="btn btn-primary btn-lg" id="another-button" onclick="another()">Another!</button>
+          </div>
+          <div class="col-4"></div>
+          <div class="col-4 text-center" id="home-button-div">
+            <button type="button" class="btn btn-lg" id="home-button" onclick="home()">Home</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="container-fluid" style="width: 500px">
-      <div class="row align-items-center">
-        <div class="col-4 text-center" id="another-button-div">
-          <button type="button" class="btn btn-primary btn-lg" id="another-button" onclick="another()">Another!</button>
-        </div>
-        <div class="col-4"></div>
-        <div class="col-4 text-center" id="home-button-div">
-          <button type="button" class="btn btn-lg" id="home-button" onclick="home()">Home</button>
-        </div>
-      </div>
+    <!-- Loading icon -->
+    <div class="loading">
+      <i class="fas fa-cog fa-spin"></i>
     </div>
+
+    <!-- Footer -->
+    <hr>
+    <footer>
+      <div class="col-12 text-center">
+        <p>&copy; Jordan Mayer 2019</p>
+      </div>
+    </footer>
   </body>
 </html>

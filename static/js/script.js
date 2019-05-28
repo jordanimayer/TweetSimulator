@@ -13,7 +13,16 @@ window.onload = function() {
   });
 }
 
+// Display loading gif while simulating
+function loading() {
+  $('.content').hide();
+  $('.loading').show();
+}
+
 function simulate() {
+  // show loading icon
+  loading();
+
   // get twitter handle from input
   var handle = $('#handle-input').val();
 
@@ -25,7 +34,11 @@ function simulate() {
 }
 
 function another() {
-  location.reload();  // refresh page
+  loading();
+
+  window.location = '';
+
+  //event.preventDefault();
 }
 
 function home() {
