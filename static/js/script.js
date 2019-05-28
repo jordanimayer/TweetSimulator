@@ -3,6 +3,14 @@ window.onload = function() {
   $('#simulate-button').on('click', function () {
     simulate();
   });
+
+  // simulate if enter is pressed
+  $(document).keypress(function(e) {
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode == '13') {
+      simulate();
+    }
+  });
 }
 
 function simulate() {
@@ -21,6 +29,5 @@ function another() {
 }
 
 function home() {
-  console.log('here!');
   window.location = '/';
 }
