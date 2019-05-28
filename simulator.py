@@ -42,6 +42,7 @@ import markovify
 from flask import Flask, render_template, request, redirect, Response
 import random, json
 import urllib.request
+import os
 from shhh import C_KEY, C_SECRET, A_TOKEN, A_TOKEN_SECRET
 
 class TweetSimulator:
@@ -132,6 +133,7 @@ def get_tweet(handle):
     display_name = user.name
     avatar_url = user.profile_image_url_https
     local_avatar_path = "./static/img/avatar.jpg"
+    os.remove(local_avatar_path);
     urllib.request.urlretrieve(avatar_url, local_avatar_path)
     sim_tweet = sim.simulate(handle, 1)
     return render_template('tweet.html',
