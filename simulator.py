@@ -41,6 +41,7 @@ import tweepy
 import markovify
 from flask import Flask, render_template, request, redirect, Response
 import random, json
+import urllib.request
 from shhh import C_KEY, C_SECRET, A_TOKEN, A_TOKEN_SECRET
 
 class TweetSimulator:
@@ -130,11 +131,13 @@ def get_tweet(handle):
     user = sim.get_api().get_user(handle)
     display_name = user.name
     avatar_url = user.profile_image_url_https
+    local_avatar_path = "./static/img/avatar.jpg"
+    urllib.request.urlretrieve(avatar_url, local_avatar_path)
     sim_tweet = sim.simulate(handle, 1)
     return render_template('tweet.html',
                             name=display_name,
                             handle=handle,
-                            avatar_url=avatar_url,
+                            avatar_url=local_avatar_path,
                             tweet=sim_tweet)
 
 
