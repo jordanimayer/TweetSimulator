@@ -7,6 +7,8 @@ Use n-gram learning model to attempt to reproduce language.
 @version: 05.29.2019
 """
 
+import sys
+
 def words_list(file):
   """
   Read file and return list of words in sequential order.
@@ -68,6 +70,51 @@ def parse_text(filename, n):
 
   return (freq_cond, freq_seq)
 
+def generate_text(freq_cond, freq_seq, num_words, n):
+  """
+  Generate text using n-gram model.
+
+  Inputs:
+    freq_cond: conditional frequencies dictionary
+    freq_seq: sequence frequencies dictionary
+    num_words: number of words to generate
+    n: use n-gram model
+
+  Return:
+    Generated text as string
+  """
+
+  words = ["*"] * (n-1)
+
+  distinct_words = freq_cond.keys()
+  vocab_size = len(distinct_words)
+
+  for j in range(num_words):
+    word_probs = {}
+
+    i = j + (n-1)  # ignore starting "*" entries
+    w_prev = words[(i-(n-1)):]
+    prev_str = " ".join(w_prev)
+
+    if prev_str in freq_seq:
+      c_prev = freq_seq[prev_str]
+    else:
+      c_prev = 0
+
+    for w in distinct_words:
+      if prev_str in freq_cond[w].keys():
+        c_w_after_prev = freq_cond[w][prev_str]
+      else:
+        c_w_after_prev = 0
+      word_probs[w] = (c_w_after_prev + 1.0)/(c_prev + vocab_size)
+
+    w_j = max(word_probs, key = lambda w: word_probs[w])
+    words.append(w_j)
+
+  generated_str = " ".join(words[(n-1):])
+
+  return generated_str
+
 
 if __name__ == "__main__":
   """
@@ -75,4 +122,5 @@ if __name__ == "__main__":
   """
 
   freq_cond, freq_seq = parse_text("testfile.txt", 2)
+  print(generate_text(freq_cond, freq_seq, 100, 2))
   exit(0)  # break here for debugging
