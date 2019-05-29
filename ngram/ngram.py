@@ -37,14 +37,18 @@ def parse_text(filename, n):
        currently only developing for n >= 2
 
   Return:
-    dictionary of dictionaries of form
+    (freq_cond, freq_seq)
+    freq_cond: dictionary of dictionaries of conditional frequencies
       {"word" : {"previous sequence": count(word | previous sequence)}}
+    freq_seq: dictionary of sequence frequencies
+      {"sequence" : count(sequence)}
   """
   file = open(filename, "r")
   words = words_list(file)  # list of all words in sequential order
   for i in range(n-1):
     words.insert(0, "*")  # "*" indicates no previous words (start of text)
-  freq = {}  # outer dict
+  freq_cond = {}
+  freq_seq = {}
 
   for j in range(len(words) - (n-1)):
     i = j + (n-1)  # ignore starting "*" entries
@@ -53,13 +57,16 @@ def parse_text(filename, n):
     prev_str = " ".join(w_prev)  # string of previous (n-1) words
 
     if len(w_i) > 0:  # ignore empty strings
-      if w_i not in freq:
-        freq[w_i] = {}
-      if prev_str not in freq[w_i]:
-        freq[w_i][prev_str] = 0
-      freq[w_i][prev_str] += 1
+      if w_i not in freq_cond:
+        freq_cond[w_i] = {}
+      if prev_str not in freq_cond[w_i]:
+        freq_cond[w_i][prev_str] = 0
+      if prev_str not in freq_seq:
+        freq_seq[prev_str] = 0
+      freq_cond[w_i][prev_str] += 1
+      freq_seq[prev_str] += 1
 
-  return freq
+  return (freq_cond, freq_seq)
 
 
 if __name__ == "__main__":
@@ -67,5 +74,5 @@ if __name__ == "__main__":
   Test things (TODO: better comment here).
   """
 
-  freq = parse_text("testfile.txt", 2)
+  freq_cond, freq_seq = parse_text("testfile.txt", 2)
   exit(0)  # break here for debugging
