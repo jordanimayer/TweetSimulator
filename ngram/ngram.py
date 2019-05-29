@@ -120,7 +120,15 @@ if __name__ == "__main__":
   """
   Test things (TODO: better comment here).
   """
+  # extract command line arguments
+  args = sys.argv
+  if len(args) != 4:
+    print("Usage: python ngram.py file.txt n num_words")
+    exit(0)
+  filename = args[1]
+  n = int(args[2])
+  num_words = int(args[3])
 
-  freq_cond, freq_seq = parse_text("testfile.txt", 2)
-  print(generate_text(freq_cond, freq_seq, 100, 2))
+  freq_cond, freq_seq = parse_text(filename, n)
+  print(generate_text(freq_cond, freq_seq, num_words, n))
   exit(0)  # break here for debugging
