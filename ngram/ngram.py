@@ -28,6 +28,23 @@ def words_list(file):
   else:
     raise ValueError("file not in Read mode")
 
+def sentences_list(file):
+  """
+  Read file and return list of sentences (as strings) in sequential order.
+
+  Input:
+    file: file in read mode
+
+  Return:
+    List of words in sequential order
+  """
+  if file.mode == "r":  # make sure file is in Read mode
+    text = file.read()
+    sentences = text.split(".")
+    return sentences
+  else:
+    raise ValueError("file not in Read mode")
+
 
 def parse_text(filename, n):
   """
@@ -46,27 +63,55 @@ def parse_text(filename, n):
       {"sequence" : count(sequence)}
   """
   file = open(filename, "r")
-  words = words_list(file)  # list of all words in sequential order
-  for i in range(n-1):
-    words.insert(0, "*")  # "*" indicates no previous words (start of text)
+  sentences = sentences_list(file)  # list of all sentences in sequential order
+
   freq_cond = {}
   freq_seq = {}
 
-  for j in range(len(words) - (n-1)):
-    i = j + (n-1)  # ignore starting "*" entries
-    w_i = words[i]  # this word
-    w_prev = words[(i-(n-1)):i]
-    prev_str = " ".join(w_prev)  # string of previous (n-1) words
+  for sentence in sentences:
+    words = sentence.split()  # list of words in sequential order
+    for i in range(n-1):
+      words.insert(0, "*")  # "*" indicates no previous words
+                            # (start of sentence)
+    for j in range(len(words) - (n-1)):
+      i = j + (n-1)  # ignore starting "*" entries when generating conditionals
+      w_i = words[i]  # this word
+      w_prev = words[(i-(n-1)):i]  # (n-1) previous words
+      prev_str = " ".join(w_prev)
 
-    if len(w_i) > 0:  # ignore empty strings
+      # initialize dictionary entries if necessary
       if w_i not in freq_cond:
         freq_cond[w_i] = {}
       if prev_str not in freq_cond[w_i]:
         freq_cond[w_i][prev_str] = 0
       if prev_str not in freq_seq:
         freq_seq[prev_str] = 0
+
+      # increment counts
       freq_cond[w_i][prev_str] += 1
       freq_seq[prev_str] += 1
+
+#  words = words_list(file)  # list of all words in sequential order
+#  for i in range(n-1):
+#    words.insert(0, "*")  # "*" indicates no previous words (start of text)
+#  freq_cond = {}
+#  freq_seq = {}
+#
+#  for j in range(len(words) - (n-1)):
+#    i = j + (n-1)  # ignore starting "*" entries
+#    w_i = words[i]  # this word
+#    w_prev = words[(i-(n-1)):i]
+#    prev_str = " ".join(w_prev)  # string of previous (n-1) words
+#
+#    if len(w_i) > 0:  # ignore empty strings
+#      if w_i not in freq_cond:
+#        freq_cond[w_i] = {}
+#      if prev_str not in freq_cond[w_i]:
+#        freq_cond[w_i][prev_str] = 0
+#      if prev_str not in freq_seq:
+#        freq_seq[prev_str] = 0
+#      freq_cond[w_i][prev_str] += 1
+#      freq_seq[prev_str] += 1
 
   return (freq_cond, freq_seq)
 
@@ -121,13 +166,16 @@ if __name__ == "__main__":
   Test things (TODO: better comment here).
   """
   # extract command line arguments
-  args = sys.argv
-  if len(args) != 4:
-    print("Usage: python ngram.py file.txt n num_words")
-    exit(0)
-  filename = args[1]
-  n = int(args[2])
-  num_words = int(args[3])
+#  args = sys.argv
+#  if len(args) != 4:
+#    print("Usage: python ngram.py file.txt n num_words")
+#    exit(0)
+#  filename = args[1]
+#  n = int(args[2])
+#  num_words = int(args[3])
+  filename = "bigsherlock.txt"
+  n = 3
+  num_words = 30
 
   freq_cond, freq_seq = parse_text(filename, n)
   print(generate_text(freq_cond, freq_seq, num_words, n))
